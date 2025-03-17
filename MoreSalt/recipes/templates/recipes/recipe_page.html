@@ -6,6 +6,11 @@
 
 {% block content %}
 <section>
+    <img
+        class="banner" 
+        src="{{ recipe.banner.url }}"
+        alt= "{{ recipe.title }}"
+        />
     <h1> {{ recipe.title }} </h1>
     <p>{{ recipe.date }}</p>
     <p>{{ recipe.body }}</p>

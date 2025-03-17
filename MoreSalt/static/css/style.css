@@ -50,3 +50,9 @@ a:hover {
 h1, p{
     text-align: center;
 } */
+
+.banner {
+    display:block;
+    width:100%;
+    max-width: 800px;
+}

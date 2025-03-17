@@ -4,7 +4,7 @@ from django.db import models
 
 class Recipe(models.Model):
     title = models.CharField(max_length=75)
-    '''image =models.ImageField () might need pillow python -m pip install Pillow''' 
+    banner = models.ImageField(default='fallback.png', blank=True)
     body = models.TextField()
     slug = models.SlugField()
     date = models.DateTimeField(auto_now_add=True)
