@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-{% load static %}
+{% extends "layout.html" %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>home</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <script src="{% static 'js/main.js' %}" defer></script>
-</head>
-<body>
+{% block title %} 
+Home
+{% endblock %}
+
+{% block content %}
     <h1> home </h1>
     <p>too the <a href="/about">about<a/> page.</p>
-</body>
-</html>
+    <p>send the <a href="{% url 'recipes:list' %}">Recipes<a/> page.</p>
+{% endblock %}

@@ -1,5 +1,11 @@
 from django.shortcuts import render
+from .models import Recipe
 
 # Create your views here.
 def recipes_list(request):
-    return render(request, 'recipes/recipes_list.html')
+    recipes = Recipe.objects.all().order_by('-date')
+    return render(request, 'recipes/recipes_list.html', {'recipes':recipes})
+
+def recipe_page(request, slug):
+    recipe = Recipe.objects.get(slug=slug)
+    return render(request, 'recipes/recipe_page.html', {'recipe':recipe})

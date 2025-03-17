@@ -1,11 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recipe list</title>
-</head>
-<body>
-    <h1> Posts here</h1>
-</body>
-</html>
+{% extends "layout.html" %}
+
+{% block title %} 
+Posts
+{% endblock %}
+
+{% block content %}
+<section>
+    <h1> Posts list </h1>
+    <p>too the <a href="/">Home<a/> page.</p>
+    <p>too the <a href="/about">About<a/> page.</p>
+    {% for recipe in recipes %}
+        <article = class = "recipe">
+            <h2>
+                <a href="{% url 'recipes:page' slug=recipe.slug %}">
+                    {{ recipe.title }} 
+                </a>
+            </h2>
+            <p>{{ recipe.date }}</p>
+            <p>{{ recipe.body }}</p>
+        </artitcle>
+    {% endfor%}
+
+</section>
+{% endblock %}
+
