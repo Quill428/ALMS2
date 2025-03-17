@@ -1,0 +1,1 @@
+second attempt at my django website as my first one came into too many issues and after a while trying to fix it i figured the easiest thing to do was to start again as the issue lying in how i set up the app and files 
