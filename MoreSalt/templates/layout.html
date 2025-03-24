@@ -13,56 +13,51 @@
     <script src="{% static 'js/main.js' %}" defer></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href"/">
-            <img src="../media/JMS2.png" alt="A Little More Salt Logo" width="150" height="70" class="d-inline-block align-text-top">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="{% static 'images/JMS2.png' %}" alt="A Little More Salt Logo" width="150" height="70" class="d-inline-block align-text-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link dropdown-toggle" aria-current="page" href="#" role="button" data-bs-toggle="dropdown">Daily Recipe</a>
-                <ul class="dropdown-menu">
-                    <li><a href="#" class="dropdown-item" href="#">Breakfast</a></li>
-                    <li><a href="#" class="dropdown-item" href="#">Lunch</a></li>
-                    <li><a href="#" class="dropdown-item" href="#">Dinner</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a href="#" class="dropdown-item" href="#">Dessert</a></li>
-                    <li><a href="#" class="dropdown-item" href="#">Drinks</a></li>
-                </ul>
-              </li>              
-              <li class="nav-item">
-                <a class="nav-link dropdown-toggle" aria-current="page" href="#" role="button" data-bs-toggle="dropdown">Health and Diet</a>
+                
+              {% for category in categories %}
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                      {{ category.name }}
+                  </a>
                   <ul class="dropdown-menu">
-                    <li><a href="#" class="dropdown-item" href="#">Keto</a></li>
-                    <li><a href="#" class="dropdown-item" href="#">Vegetarian</a></li>
+                      {% for subcategory in category.subcategories.all %}
+                      <li>
+                          <a class="dropdown-item" href="{% url 'recipes:subcategory_recipes' subcategory.id %}">
+                              {{ subcategory.name }}
+                          </a>
+                      </li>
+                      {% endfor %}
                   </ul>
               </li>
-              <li class="nav-item">
-                <a class="nav-link dropdown-toggle" aria-current="page" href="#" role="button" data-bs-toggle="dropdown"> Holidays</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#" class="dropdown-item" href="#">New Years</a></li>
-                    <li><a href="#" class="dropdown-item" href="#">Mothers Day</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'recipes:new_recipe' %}" role="button" aria-expanded="false">New Post</a>
-              </li>
-              <li class="nav-item">
-                <a class="btn btn-outline-success me-2" href="{% url 'users:register' %}" type="button" role="button"> Sign-Up button</a>
-              </li>
-              <li class="nav-item">
-                <a class="btn btn-outline-success me-2" href="{% url 'users:login' %}" type="button" role="button"> Login button</a>
-              </li>
-              
-              <form class="logout" actions="{% url 'users:logout' %}" method= "post">
-                {% csrf_token %}
-                <button class="logout-button" aria-label="User Logout" title="User Logout">logout</button>
-              </form>
+              {% endfor %}
+                
             </ul>
+
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'recipes:new_recipe' %}" role="button" aria-expanded="false">New Post</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-success me-2" href="{% url 'users:register' %}" type="button" role="button"> Sign-Up button</a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-outline-success me-2" href="{% url 'users:login' %}" type="button" role="button"> Login button</a>
+            </li>
+            
+            <form class="logout" actions="{% url 'users:logout' %}" method= "post">
+              {% csrf_token %}
+              <button class="logout-button" aria-label="User Logout" title="User Logout">logout</button>
+            </form>            
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
@@ -94,7 +89,7 @@
             <a href="https://github.com/Quill428/ALMS2" class="text-light" style="text-decoration:none">GitHub</a>
           </p>
           <p>
-            <a href="https://www.facebook.com/" class="text-light" style="text-decoration:none">Linkedin</a>
+            <a href="https://www.linkedin.com/" class="text-light" style="text-decoration:none">Linkedin</a>
           </p>
         </div>
 
@@ -102,7 +97,9 @@
           <h5 class="text-uppercase mb-4 font-weight-bold text-info">Social Media</h5>
           <hr class="mb-4">
           <p>
-            <a href="https://www.facebook.com/" class="text-light" style="text-decoration:none">Facebook</a>
+            <a href="https://www.facebook.com/" class="text-light" style="text-decoration:none">
+            <i class="bi bi-facebook"></i>Facebook
+            </a>
           </p>
           <p>
             <a href="https://x.com/?lang=en-nz" class="text-light" style="text-decoration:none">Twitter</a>

@@ -25,10 +25,10 @@ def recipe_new(request):
 
 def category_recipes(request, category_id):
     category = get_object_or_404(Category, id = category_id)
-    recipes = Recipe.objects.filter(category=category)
+    recipes = Recipe.objects.filter(categories=category)
     return render(request, 'recipe/category_recipes.html', {'category': category, 'recipes':recipes })
 
 def subcategory_recipes(request, subcategory_id):
     subcategory = get_object_or_404(SubCategory, id = subcategory_id)
-    recipes = Recipe.objects.filter(subcategory=subcategory)
+    recipes = Recipe.objects.filter(subcategories=subcategory)
     return render(request, 'recipe/subcategory_recipes.html', {'subcategory': subcategory, 'recipes':recipes })

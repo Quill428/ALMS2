@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h2>Recipes in Category: {{ category.name }}</h2>
+
+{% if recipes %}
+    {% for recipe in recipes %}
+        <article class="recipe">
+            <h3>
+                <a href="{% url 'recipes:page' slug=recipe.slug %}">{{ recipe.title }}</a>
+            </h3>
+            <p>{{ recipe.date }} by {{ recipe.author }}</p>
+            <p>{{ recipe.brief_description }}</p>
+        </article>
+    {% endfor %}
+{% else %}
+    <p>No recipes found in this category.</p>
+{% endif %}
+
+{% endblock %}
