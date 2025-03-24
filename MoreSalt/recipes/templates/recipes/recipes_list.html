@@ -5,20 +5,20 @@ Posts
 {% endblock %}
 
 {% block content %}
-<section>
+    <section>
     <h1> Posts list </h1>
-    <p>too the <a href="/">Home<a/> page.</p>
-    <p>too the <a href="/about">About<a/> page.</p>
+
     {% for recipe in recipes %}
-        <article = class = "recipe">
+        <article class = "recipe">
             <h2>
                 <a href="{% url 'recipes:page' slug=recipe.slug %}">
                     {{ recipe.title }} 
                 </a>
             </h2>
-            <p>{{ recipe.date }}</p>
-            <p>{{ recipe.body }}</p>
-        </artitcle>
+            <img> {{ recipe.banner }} </img>
+            <p>{{ recipe.date }} by {{ recipe.author }}</p>
+            <p>{{ recipe.brief_description|truncatewords:30 }}</p> 
+        </article>
     {% endfor%}
 
 </section>
