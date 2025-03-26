@@ -163,3 +163,9 @@ a:hover {
 .logout-button:hover {
     opacity: .85;
 }
+
+.recipe-image {
+    max-height: 30px;
+    width: auto;
+    object-fit: cover; /* Optional: Crop instead of squish */
+}

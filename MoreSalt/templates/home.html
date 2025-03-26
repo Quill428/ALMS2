@@ -14,5 +14,26 @@ Home
         Your browser does not support the video tag.>
         </video>-->
 
-    
+    <div class="customer-responses">
+        <h2>Customer Responses</h2>
+        {% for response in recent_responses %}
+            <div class="response">
+                <p><strong>Reply:</strong> {{ response.content }}</p>
+                <p><em>Posted on: {{ response.created_at }}</em></p>
+            </div>
+        {% empty %}
+            <p> No responses Yet </p>
+        {% endfor %}
+
+
+
+    <!-- Response Form Section -->
+    <div id="response-form">
+        <form method="post" action="{% url 'recipes:submit_response' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
 {% endblock %}

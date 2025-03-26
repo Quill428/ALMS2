@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Recipe, Category, SubCategory
+from .models import Recipe, Category, SubCategory, CustomerResponse
 from django.contrib.auth.decorators import login_required
 from . import forms
+from .forms import CustomerResponseForm
 
 # Create your views here.
 def recipes_list(request):
@@ -32,3 +33,22 @@ def subcategory_recipes(request, subcategory_id):
     subcategory = get_object_or_404(SubCategory, id = subcategory_id)
     recipes = Recipe.objects.filter(subcategories=subcategory)
     return render(request, 'recipe/subcategory_recipes.html', {'subcategory': subcategory, 'recipes':recipes })
+
+def submit_response(request):
+    if request.method == 'POST':
+        form = CustomerResponseForm(request.POST)
+        if form.is_valid():
+            response = form.save(commit=False)
+            if request.user.is_authenticated:
+                response.user = request.user
+            response.save()
+            return redirect('/')
+    else:
+        form = CustomerResponseForm()
+
+    return render(request, 'recipes/submit_response.html',  {'form': form})
+
+def homepage(request):
+    recent_responses = CustomerResponse.objects.order_by('-created_at')[:3]  # Get top 3 latest responses
+    print("Recent Responses:", recent_responses)
+    return render(request, 'home.html', {'recent_responses': recent_responses}) #Home.html

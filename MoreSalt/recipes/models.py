@@ -47,3 +47,13 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
     
+class CustomerResponse(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, blank =True, null=True)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Response from {self.user.username if self.user else "Anonymous"}'
+    
+    class Meta:
+        ordering=['-created_at']
