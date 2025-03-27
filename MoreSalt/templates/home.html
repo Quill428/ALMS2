@@ -1,5 +1,7 @@
 {% extends "layout.html" %}
 
+{% load static %}
+
 {% block title %} 
 Home
 {% endblock %}
@@ -9,10 +11,10 @@ Home
     <p>too the <a href="/about">about<a/> page.</p>
     <p>send the <a href="{% url 'recipes:list' %}">Recipes<a/> page.</p>
 
-    <!--video width="600" height="400" autoplay loop muted>
-        <sourcesrc=" static 'images\minions-panic.gif' }" type="video/mp4">
-        Your browser does not support the video tag.>
-        </video>-->
+    <video width="600" height="400" autoplay loop muted>
+        <source src="{% static 'videos/pouringwater.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
     <div class="customer-responses">
         <h2>Customer Responses</h2>
@@ -24,7 +26,6 @@ Home
         {% empty %}
             <p> No responses Yet </p>
         {% endfor %}
-
 
 
     <!-- Response Form Section -->

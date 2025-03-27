@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Recipe, Category, SubCategory, CustomerResponse
 from django.contrib.auth.decorators import login_required
 from . import forms
-from .forms import CustomerResponseForm
+from .forms import CustomerResponseForm, CreatePost
 
 # Create your views here.
 def recipes_list(request):
@@ -16,12 +16,12 @@ def recipe_page(request, slug):
 @login_required(login_url="/users/login/")
 def recipe_new(request):
     if request.method == 'POST':
-        form = forms.CreatePost(request.POST, request.FILES)
+        form = CreatePost(request.POST, request.FILES)
         if form.is_valid():
-            #save with user
+            form.save(user=request.user)
             return redirect('recipes:list')
     else:
-        form = forms.CreatePost()
+        form = CreatePost()
     return render(request, 'recipes/recipe_new.html', { 'form': form})
 
 def category_recipes(request, category_id):
@@ -50,5 +50,5 @@ def submit_response(request):
 
 def homepage(request):
     recent_responses = CustomerResponse.objects.order_by('-created_at')[:3]  # Get top 3 latest responses
-    print("Recent Responses:", recent_responses)
+    print("DEBUG: Recent Responses:", list(recent_responses)) #"Recent Responses:", recent_responses)
     return render(request, 'home.html', {'recent_responses': recent_responses}) #Home.html
