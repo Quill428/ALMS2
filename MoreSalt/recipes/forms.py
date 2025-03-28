@@ -19,4 +19,4 @@ class CreatePost(forms.ModelForm):
 class CustomerResponseForm(forms.ModelForm):
     class Meta:
         model = CustomerResponse
-        fields = ['content']
+        fields = ['title', 'content']

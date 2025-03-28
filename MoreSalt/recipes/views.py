@@ -9,8 +9,8 @@ def recipes_list(request):
     recipes = Recipe.objects.all().order_by('-date')
     return render(request, 'recipes/recipes_list.html', {'recipes':recipes})
 
-def recipe_page(request, slug):
-    recipe = Recipe.objects.get(slug=slug)
+def recipe_page(request, recipe_slug):
+    recipe = Recipe.objects.get(slug=recipe_slug)
     return render(request, 'recipes/recipe_page.html', {'recipe':recipe})
 
 @login_required(login_url="/users/login/")
@@ -49,6 +49,8 @@ def submit_response(request):
     return render(request, 'recipes/submit_response.html',  {'form': form})
 
 def homepage(request):
+    print("DEBUG: Homepage view is being called!")  # Confirm if this runs
     recent_responses = CustomerResponse.objects.order_by('-created_at')[:3]  # Get top 3 latest responses
     print("DEBUG: Recent Responses:", list(recent_responses)) #"Recent Responses:", recent_responses)
     return render(request, 'home.html', {'recent_responses': recent_responses}) #Home.html
+
