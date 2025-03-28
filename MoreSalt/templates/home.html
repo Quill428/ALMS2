@@ -1,7 +1,6 @@
 {% extends "layout.html" %}
 
 {% load static %}
-{% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'static\css\style.css' %}">
 
 {% block title %} 
@@ -10,10 +9,10 @@ Home
 
 {% block content %}
     <h1> home </h1>
-    <p>too the <a href="/about">about<a/> page.</p>
+    <h4><b> cooking with instructions can be as easy as pouring as pouring a glass of water</b></h4>
     <p>send the <a href="{% url 'recipes:list' %}">Recipes<a/> page.</p>
 
-    <video width="600" height="400" autoplay loop muted>
+    <video width="1000" height="auto" autoplay loop muted>
         <source src="{% static 'videos/pouringwater.mp4' %}" type="video/mp4">
         Your browser does not support the video tag.
     </video>

@@ -7,7 +7,7 @@
     {% for recipe in recipes %}
         <article class="recipe">
             <h3>
-                <a href="{% url 'recipes:page' slug=recipe.slug %}">{{ recipe.title }}</a>
+                <a href="{% url 'recipes:page' slug=slug %}">{{ recipe.title }}</a>
             </h3>
             <p>{{ recipe.date }} by {{ recipe.author }}</p>
             <p>{{ recipe.brief_description }}</p>

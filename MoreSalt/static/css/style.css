@@ -61,16 +61,10 @@ body{
     height: 100%;
     margin: 0;
     display: flex;
+    justify-content: center;
     align-items: center;
     text-align: center; /* This will center text within elements */
     font-size: 3rem;
-}
-
-nav {
-    padding: 1rem;
-    background-color: #44B78B;
-    color: white;
-    font-size: 2.5rem;
 }
 
 main {
@@ -173,22 +167,6 @@ a:hover {
 }
 
 
-
-
-.box-container {
-    display: inline-block;
-    justify-content: space-between; /* Equal spacing */
-    align-items: center; /* Align vertically */
-    width: 80%; /* Adjust width as needed */
-    margin: auto; /* Center the row */
-}
-
-.box {
-    width: 200px;
-    height: 200px;
-    background-color: lightgray; /* Color for visibility */
-    border: 2px solid #000; /* Optional border */
-}
 
 
 /*.customer-responses {

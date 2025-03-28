@@ -20,8 +20,8 @@ class SubCategory(models.Model):
 class Recipe(models.Model):
     title = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, related_name="recipes", on_delete=models.CASCADE)
-    subcategories = models.ManyToManyField(SubCategory, related_name="recipes", blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    subcategories = models.ManyToManyField(SubCategory, blank=True)
     banner = models.ImageField(upload_to='media', default='fallback.png', blank=True)
     description= models.TextField(default='description')
     brief_description=models.CharField(max_length=600)
