@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+from .views import homepage
 
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'static\css\style.css' %}">
@@ -17,7 +18,6 @@ Home
         Your browser does not support the video tag.
     </video>
 
-    
 
     <div class="customer-responses">
         <h2>Customer Responses</h2>
@@ -34,6 +34,7 @@ Home
         </div>
     </div>
 
+
     <!-- Response Form Section -->
     <div id="response-form">
         <form method="post" action="{% url 'recipes:submit_response' %}">
@@ -42,24 +43,34 @@ Home
             <button type="submit">Submit</button>
         </form>
     </div>
-
-      
-
-    <div class="row">
+    
+    <!--<div class="row">
+      {% if most_recent %}
         <div class="col-sm-4 mb-3 mb-sm-0">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h5 class="card-title">Feedback</h5>
+              <h6 class="card-text">{{ most_recent.created_at }} by {{ most_recent.user.username}}</h6>
+              <p class="card-text"> {{ most_recent.content }} </p>
             </div>
           </div>
         </div>
+      {% endif %}-->
+    <dive class="row">
+      <div class="col-sm-4 mb-3 mb-sm-0">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">nice recipes</h5>
+            <h6 class="card-text">by Jason</h6>
+            <p class="card-text">found some really intersting recipes for almost all events and they were so easy to follow and so nice to eat afterwards</p>
+          </div>
+        </div>
+      </div>
         <div class="col-sm-4">
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">wasn't too bad</h5>
-              <h6 class="card-text">by Schmidt<h6>
+              <h6 class="card-text">by Schmidt</h6>
               <p class="card-text">wasn't too bad got to find good vegetarian recipes</p>
             </div>
           </div>
@@ -69,17 +80,9 @@ Home
             <div class="card-body">
               <h5 class="card-title">Special title treatment</h5>
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
         </div>
       </div>
-
-
-    <div class="box-container">
-        <div class="box">hello</div> 
-        <div class="box">heello</div>
-        <div class="box">hewo</div>
-    </div>
 
 {% endblock %}

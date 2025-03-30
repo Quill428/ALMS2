@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Recipe, Category, SubCategory, CustomerResponse
 from django.contrib.auth.decorators import login_required
-from . import forms
 from .forms import CustomerResponseForm, CreatePost
+import logging
 
 # Create your views here.
 def recipes_list(request):
@@ -48,10 +48,20 @@ def submit_response(request):
 
     return render(request, 'recipes/submit_response.html',  {'form': form})
 
+logger = logging.getLogger(__name__)
+
 def homepage(request):
-    print("DEBUG: Homepage view is being called!")  # Confirm if this runs
+    #raise Exception("Testing if this view is being called!")
+    logger.debug("Homepage view is being called!")  # Confirm if this runs
     recent_responses = CustomerResponse.objects.order_by('-created_at')[:3]  # Get top 3 latest responses
-    print("DEBUG: Recent Responses:", list(recent_responses)) #"Recent Responses:", recent_responses)
-    return render(request, 'home.html', {'recent_responses': recent_responses}) #Home.html
+
+    most_recent = recent_responses[0] if len(recent_responses) > 0 else None
+    second_most_recent = recent_responses[1] if len(recent_responses) > 1 else None
+    third_most_recent = recent_responses[2] if len(recent_responses) > 2 else None
+
+    logger.debug("DEBUG: Recent Responses:", list(recent_responses)) #"Recent Responses:", recent_responses)
+
+    return render(request, 'home.html', {'recent_responses': recent_responses, 'most_recent':most_recent, 
+                                         'second_most_recent':second_most_recent, 'third_most_recent':third_most_recent})
 
 recent_responses ='-created_at'[:1]
